@@ -13,7 +13,10 @@ import Modal from "../../containers/Modal";
 import { useData } from "../../contexts/DataContext";
 
 const Page = () => {
-  const {last} = useData()
+  const { data } = useData();
+  const latestEvent = data?.focus
+    ?.sort((evtA, evtB) => new Date(evtB.date) - new Date(evtA.date))[0]; // Mettre les card dans l'ordre croissant 
+  
   return <>
     <header>
       <Menu />
@@ -117,9 +120,9 @@ const Page = () => {
       <div className="col presta">
         <h3>Notre derniére prestation</h3>
         <EventCard
-          imageSrc={last?.cover}
-          title={last?.title}
-          date={new Date(last?.date)}
+          imageSrc={latestEvent?.cover || "Image inconnu"}
+          title={latestEvent?.title || "Titre inconnu"}
+          date={new Date(latestEvent?.date)}
           small
           label="boom"
         />

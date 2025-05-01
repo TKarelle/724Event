@@ -47,23 +47,23 @@ const EventList = () => {
             onChange={(value) => (value ? changeType(value) : changeType(null))}
           />
           <div id="events" className="ListContainer">
-          {filteredEvents && filteredEvents.length > 0 ? (
-    filteredEvents.map((event) => (
-      <Modal key={event.id} Content={<ModalEvent event={event} />}>
-        {({ setIsOpened }) => (
-          <EventCard
-            onClick={() => setIsOpened(true)}
-            imageSrc={event.cover}
-            title={event.title}
-            date={new Date(event.date)}
-            label={event.type}
-          />
-        )}
-      </Modal>
-    ))
-  ) : (
-    <div>No events available</div> 
-  )}
+            {filteredEvents && filteredEvents.length > 0 ? (
+              filteredEvents.map((event) => (
+                <Modal key={event.id} Content={<ModalEvent event={event} />}>
+                  {({ setIsOpened }) => (
+                    <EventCard
+                      onClick={() => setIsOpened(true)}
+                      imageSrc={event.cover}
+                      title={event.title}
+                      date={new Date(event.date)}
+                      label={event.type}
+                    />
+                  )}
+                </Modal>
+              ))
+            ) : (
+            <div>No events available</div> 
+            )}
           </div>
           <div className="Pagination">
             {[...Array(pageNumber || 0)].map((_, n) => (
